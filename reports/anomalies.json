@@ -1,0 +1,51 @@
+[
+  {
+    "source_ip": "198.51.100.80",
+    "destination_ip": "10.0.0.20",
+    "destination_port": 4444,
+    "severity": "medium",
+    "reason": "new source IP not seen in baseline"
+  },
+  {
+    "source_ip": "198.51.100.80",
+    "destination_ip": "10.0.0.20",
+    "destination_port": 4444,
+    "severity": "high",
+    "reason": "destination port not seen in baseline"
+  },
+  {
+    "source_ip": "198.51.100.80",
+    "destination_ip": "10.0.0.20",
+    "destination_port": 8080,
+    "severity": "medium",
+    "reason": "new source IP not seen in baseline"
+  },
+  {
+    "source_ip": "198.51.100.80",
+    "destination_ip": "10.0.0.20",
+    "destination_port": 8080,
+    "severity": "high",
+    "reason": "destination port not seen in baseline"
+  },
+  {
+    "source_ip": "198.51.100.80",
+    "destination_ip": "10.0.0.20",
+    "destination_port": 3389,
+    "severity": "medium",
+    "reason": "new source IP not seen in baseline"
+  },
+  {
+    "source_ip": "198.51.100.80",
+    "destination_ip": "10.0.0.20",
+    "destination_port": 3389,
+    "severity": "high",
+    "reason": "destination port not seen in baseline"
+  },
+  {
+    "source_ip": "198.51.100.80",
+    "destination_ip": "10.0.0.20",
+    "destination_port": 22,
+    "severity": "medium",
+    "reason": "new source IP not seen in baseline"
+  }
+]

@@ -1,10 +1,26 @@
-"""Baseline Builder module for Network Baseline."""
+"""Build a simple normal-traffic baseline."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+from src.traffic_summary import TrafficEvent
 
 
-def main() -> None:
-    """Placeholder entry point."""
-    raise NotImplementedError("Implement baseline builder logic")
+@dataclass(frozen=True)
+class Baseline:
+    allowed_ports: set[int]
+    known_sources: set[str]
+    max_events_per_source: int
 
 
-if __name__ == "__main__":
-    main()
+def build_baseline(events: list[TrafficEvent]) -> Baseline:
+    counts: dict[str, int] = {}
+    for event in events:
+        counts[event.source_ip] = counts.get(event.source_ip, 0) + 1
+    max_events = max(counts.values(), default=0)
+    return Baseline(
+        allowed_ports={event.destination_port for event in events},
+        known_sources={event.source_ip for event in events},
+        max_events_per_source=max_events,
+    )
