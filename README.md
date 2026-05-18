@@ -38,13 +38,31 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 - Summarizes top IPs, ports, and destinations
 - Detects new source IPs
 - Detects destination ports outside the baseline
+- Detects new destination IPs
 - Detects unusual connection volume
-- Writes Markdown and JSON reports
+- Builds source-level drift risk rows
+- Writes Markdown report, triage handoff, anomaly JSON, source risk JSON, and summary JSON
+
+## Demo Artifacts
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Security notes](docs/SECURITY_NOTES.md)
+- [Demo walkthrough](docs/DEMO.md)
+- [Release notes](docs/RELEASE_NOTES.md)
+- [Sample baseline report](reports/baseline-report.md)
+- [Sample triage report](reports/triage.md)
+- [Sample source risk table](reports/source-risk.json)
+
+## Docker Demo
+
+```bash
+docker compose run --rm network-baseline-demo
+```
 
 ## Roadmap
 
-- Polish sample output screenshots or terminal demos
-- Add architecture diagram and deeper implementation notes
-- Expand test coverage around edge cases
-- Add Docker or local demo workflow where useful
-- Prepare `v0.1.0-mvp` release notes
+- Add rolling baseline windows.
+- Add allowlist/suppression support for expected new services.
+- Add CSV/JSONL export for SIEM workflows.
+- Add dashboard charts for source and port drift.
+- Prepare GitHub release `v0.1.0-mvp`.

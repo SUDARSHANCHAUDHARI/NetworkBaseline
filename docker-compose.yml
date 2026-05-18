@@ -1,0 +1,7 @@
+services:
+  network-baseline-demo:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./reports:/app/reports

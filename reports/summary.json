@@ -1,0 +1,9 @@
+{
+  "normal_events": 4,
+  "observed_events": 5,
+  "normal_unique_destinations": 3,
+  "observed_unique_destinations": 1,
+  "anomalies": 8,
+  "high": 4,
+  "medium": 4
+}

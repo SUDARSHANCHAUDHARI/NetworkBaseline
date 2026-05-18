@@ -4,48 +4,71 @@
     "destination_ip": "10.0.0.20",
     "destination_port": 4444,
     "severity": "medium",
-    "reason": "new source IP not seen in baseline"
+    "kind": "baseline.new_source",
+    "reason": "new source IP not seen in baseline",
+    "recommendation": "Confirm whether this source is expected, then add to baseline or investigate the host."
   },
   {
     "source_ip": "198.51.100.80",
     "destination_ip": "10.0.0.20",
     "destination_port": 4444,
     "severity": "high",
-    "reason": "destination port not seen in baseline"
+    "kind": "baseline.new_port",
+    "reason": "destination port not seen in baseline",
+    "recommendation": "Review the destination service and verify whether this port should be allowed."
   },
   {
     "source_ip": "198.51.100.80",
     "destination_ip": "10.0.0.20",
     "destination_port": 8080,
     "severity": "medium",
-    "reason": "new source IP not seen in baseline"
+    "kind": "baseline.new_source",
+    "reason": "new source IP not seen in baseline",
+    "recommendation": "Confirm whether this source is expected, then add to baseline or investigate the host."
   },
   {
     "source_ip": "198.51.100.80",
     "destination_ip": "10.0.0.20",
     "destination_port": 8080,
     "severity": "high",
-    "reason": "destination port not seen in baseline"
+    "kind": "baseline.new_port",
+    "reason": "destination port not seen in baseline",
+    "recommendation": "Review the destination service and verify whether this port should be allowed."
   },
   {
     "source_ip": "198.51.100.80",
     "destination_ip": "10.0.0.20",
     "destination_port": 3389,
     "severity": "medium",
-    "reason": "new source IP not seen in baseline"
+    "kind": "baseline.new_source",
+    "reason": "new source IP not seen in baseline",
+    "recommendation": "Confirm whether this source is expected, then add to baseline or investigate the host."
   },
   {
     "source_ip": "198.51.100.80",
     "destination_ip": "10.0.0.20",
     "destination_port": 3389,
     "severity": "high",
-    "reason": "destination port not seen in baseline"
+    "kind": "baseline.new_port",
+    "reason": "destination port not seen in baseline",
+    "recommendation": "Review the destination service and verify whether this port should be allowed."
   },
   {
     "source_ip": "198.51.100.80",
     "destination_ip": "10.0.0.20",
     "destination_port": 22,
     "severity": "medium",
-    "reason": "new source IP not seen in baseline"
+    "kind": "baseline.new_source",
+    "reason": "new source IP not seen in baseline",
+    "recommendation": "Confirm whether this source is expected, then add to baseline or investigate the host."
+  },
+  {
+    "source_ip": "198.51.100.80",
+    "destination_ip": "*",
+    "destination_port": 0,
+    "severity": "high",
+    "kind": "baseline.volume_spike",
+    "reason": "connection volume 4 exceeds baseline",
+    "recommendation": "Check whether this is an authorized batch job, scan, or compromised host."
   }
 ]
