@@ -1,70 +1,87 @@
 # Network Baseline
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue)](#) [![Status](https://img.shields.io/badge/status-MVP-green)](#) [![Security](https://img.shields.io/badge/security-defensive%20lab-purple)](#)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](#requirements)
+[![Status](https://img.shields.io/badge/status-MVP-green)](#status)
+[![Security](https://img.shields.io/badge/security-defensive%20lab-purple)](#safe-use)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Lab tool that builds a normal traffic baseline and flags unusual sources, ports, and connection volume.
+Builds a normal traffic baseline from a sample of network logs, then flags unusual source IPs, destination ports, and connection volume spikes in observed traffic.
 
-- **Portfolio group:** Cybersecurity lab project
-- **Status:** MVP implemented, tested, committed, and pushed to GitHub
-- **GitHub:** https://github.com/SUDARSHANCHAUDHARI/NetworkBaseline
-- **Local path:** `/Users/screencloudsudarshan/SUDARSHAN_CODE/sudarshan_repos/CyberSecurity/NetworkBaseline`
+---
 
-## MVP Snapshot
+## Overview
 
-This repository includes a working MVP with safe sample data, deterministic detection or analysis logic, local tests, and generated output reports where relevant. It is ready for README/demo polish or deeper product work.
+Network Baseline is a defensive analysis lab tool that takes a "normal" sample of network connections, learns typical source IPs, destination ports, and per-host volume, and compares it against an "observed" sample to detect anomalies. Outputs include severity-scored anomalies, per-source risk tables, and an analyst triage handoff.
 
-## Safe Use
+## Features
 
-This project is defensive and analysis-focused. Use only with logs, systems, repositories, and lab environments you own or have permission to assess.
+- Parses CSV network traffic logs
+- Builds normal baseline (source IPs, destination ports, volume)
+- Detects new source IPs not seen in baseline
+- Detects connections to unexpected destination ports
+- Detects volume spikes (per-source request bursts)
+- Severity-scores each anomaly
+- Outputs JSON anomalies, source risk, summary, Markdown report, and triage handoff
 
-## Core Features
+## Requirements
 
-- traffic summary
-- top IPs
-- top ports
-- unusual connection volume
-- baseline comparison
+- Python 3.10 or newer
+- Linux, macOS, or Windows
+- No third-party Python packages (standard library only)
+- Optional: Docker for the demo container
 
-
-## Install
+## Installation
 
 ```bash
+git clone https://github.com/SUDARSHANCHAUDHARI/NetworkBaseline.git
+cd NetworkBaseline
 pip install .
 ```
 
-This registers the `network-baseline` command. Or run directly:
+This registers the `network-baseline` CLI command.
+
+To run without installing:
 
 ```bash
 python3 main.py --help
 ```
 
-## Quick Start
+## Usage
+
+Compare normal vs attack-sample traffic using the included data:
 
 ```bash
-python3 -m src.anomaly_detector
-python3 -m unittest discover -s tests -p 'test_*.py'
+python3 main.py --normal data/normal.csv --observed data/attack.csv --out reports/baseline-report.md
 ```
 
-## MVP Capabilities
+Generated outputs in `reports/`:
 
-- Builds a baseline from normal traffic
-- Summarizes top IPs, ports, and destinations
-- Detects new source IPs
-- Detects destination ports outside the baseline
-- Detects new destination IPs
-- Detects unusual connection volume
-- Builds source-level drift risk rows
-- Writes Markdown report, triage handoff, anomaly JSON, source risk JSON, and summary JSON
+- `baseline-report.md` — Markdown anomaly report
+- `anomalies.json` — structured anomaly findings
+- `summary.json` — counts and severity breakdown
+- `source-risk.json` — per-source risk table
+- `triage.md` — analyst triage checklist
 
-## Demo Artifacts
+## Project Structure
 
-- [Architecture](docs/ARCHITECTURE.md)
-- [Security notes](docs/SECURITY_NOTES.md)
-- [Demo walkthrough](docs/DEMO.md)
-- [Release notes](docs/RELEASE_NOTES.md)
-- [Sample baseline report](reports/baseline-report.md)
-- [Sample triage report](reports/triage.md)
-- [Sample source risk table](reports/source-risk.json)
+```
+NetworkBaseline/
+├── src/            Parser, baseline builder, anomaly detector, traffic summary
+├── data/           Safe sample CSVs (normal + attack)
+├── reports/        Example generated output
+├── docker/         Dockerfile + compose support
+├── docs/           Architecture, security notes, demo
+├── tests/          Unit tests
+├── main.py         CLI entrypoint
+├── pyproject.toml  Package metadata
+└── LICENSE
+```
+
+## Testing
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py'
+```
 
 ## Docker Demo
 
@@ -72,10 +89,29 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 docker compose run --rm network-baseline-demo
 ```
 
+## Safe Use
+
+This project is defensive and analysis-focused. Use only with logs and lab environments you own or have explicit written permission to assess. The included sample CSVs are synthetic and safe for public demo use.
+
+## Status
+
+Working CLI MVP with tests, sample data, and Docker support.
+
 ## Roadmap
 
-- Add rolling baseline windows.
-- Add allowlist/suppression support for expected new services.
-- Add CSV/JSONL export for SIEM workflows.
-- Add dashboard charts for source and port drift.
-- Prepare GitHub release `v0.1.0-mvp`.
+- Streaming mode for live capture
+- pcap and JSONL log support
+- Time-of-day baseline (different normal per hour)
+- Configurable severity thresholds
+- GitHub release `v0.1.0-mvp`
+
+## License
+
+Released under the [MIT License](LICENSE). You are free to use, modify, and distribute this software with attribution.
+
+## Author
+
+**Sudarshan Chaudhari** — [SudarshanTechLabs](https://github.com/SUDARSHANCHAUDHARI)
+Bangkok, Thailand
+
+For inquiries: open an issue on [GitHub](https://github.com/SUDARSHANCHAUDHARI/NetworkBaseline/issues).
