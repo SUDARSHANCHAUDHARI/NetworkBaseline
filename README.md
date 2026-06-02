@@ -25,6 +25,19 @@ This project is defensive and analysis-focused. Use only with logs, systems, rep
 - unusual connection volume
 - baseline comparison
 
+
+## Install
+
+```bash
+pip install .
+```
+
+This registers the `network-baseline` command. Or run directly:
+
+```bash
+python3 main.py --help
+```
+
 ## Quick Start
 
 ```bash
